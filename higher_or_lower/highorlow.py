@@ -24,77 +24,73 @@ def shuffle(deckListIn):
 
 
 # Main Game
-def main():
-    print('Welcome to Higher or Lower')
-    print('You have to choose whether the next card to be shown will be higher or lower than the current card.')
-    print('Getting it right adds 20 points; get it wrong and you lose 15 points.')
-    print('You have 50 points to start with')
+print('Welcome to Higher or Lower')
+print('You have to choose whether the next card to be shown will be higher or lower than the current card.')
+print('Getting it right adds 20 points; get it wrong and you lose 15 points.')
+print('You have 50 points to start with')
 
-    startingDeckList = []
-    # 1
-    for suit in SUIT_TUPLE:
-        for thisValue, rank in enumerate(RANK_TUPLE):
-            cardDict = {'rank': rank, 'suit': suit, 'value': thisValue + 1}
-            startingDeckList.append(cardDict)
+startingDeckList = []
+# 1
+for suit in SUIT_TUPLE:
+    for thisValue, rank in enumerate(RANK_TUPLE):
+        cardDict = {'rank': rank, 'suit': suit, 'value': thisValue + 1}
+        startingDeckList.append(cardDict)
 
-    score = 50
+score = 50
 
 
-    #Play multiple games
+#Play multiple games
 
-    while True:
-        gameDeckList = shuffle(startingDeckList)
-        #2
-        currentCardDict = getCard(gameDeckList)
-        currentCardRank = currentCardDict['rank']
-        currentCardValue = currentCardDict['value']
-        currentCardSuit= currentCardDict['suit']
+while True:
+    gameDeckList = shuffle(startingDeckList)
+    #2
+    currentCardDict = getCard(gameDeckList)
+    currentCardRank = currentCardDict['rank']
+    currentCardValue = currentCardDict['value']
+    currentCardSuit= currentCardDict['suit']
 
-        print(f"Starting card is: {currentCardRank} of {currentCardSuit}")
+    print(f"Starting card is: {currentCardRank} of {currentCardSuit}")
 
-        # play one game of this many cards
+    # play one game of this many cards
 
-        #3
-        for cardNumber in range(0, NCARDS):
-            answer = input(f'Will the next card be higher or lower than the {currentCardRank} of {currentCardSuit}? Enter "H" or "L":\n').upper()
+    #3
+    for cardNumber in range(0, NCARDS):
+        answer = input(f'Will the next card be higher or lower than the {currentCardRank} of {currentCardSuit}? Enter "H" or "L":\n').upper()
 
-            #4
-            nextCardDict = getCard(gameDeckList)
+        #4
+        nextCardDict = getCard(gameDeckList)
 
-            nextCardRank = nextCardDict['rank']
-            nextCardSuit = nextCardDict['suit']
-            nextCardValue = nextCardDict['value']
+        nextCardRank = nextCardDict['rank']
+        nextCardSuit = nextCardDict['suit']
+        nextCardValue = nextCardDict['value']
 
-            print(f'Next card is: {nextCardRank} of {nextCardSuit}')
+        print(f'Next card is: {nextCardRank} of {nextCardSuit}')
 
-            #5
-            if answer == 'H':
-                if nextCardValue > currentCardValue:
-                    print("You're right! It was higher.")
-                    score += 20
-                else:
-                    print("Sorry, it was lower.")
-                    score -= 15
+        #5
+        if answer == 'H':
+            if nextCardValue > currentCardValue:
+                print("You're right! It was higher.")
+                score += 20
+            else:
+                print("Sorry, it was lower.")
+                score -= 15
 
-            elif answer == 'L':
-                if nextCardValue < currentCardValue:
-                    print("You're right! It was lower.")
-                    score += 20
-                else:
-                    print("Sorry, it was lower.")
-                    score -= 15
-                    
-            print(f"Your score is: {score}")
+        elif answer == 'L':
+            if nextCardValue < currentCardValue:
+                print("You're right! It was lower.")
+                score += 20
+            else:
+                print("Sorry, it was lower.")
+                score -= 15
+                
+        print(f"Your score is: {score}")
 
-            # Set the new card to be current card
-            currentCardRank = nextCardRank
-            currentCardValue = nextCardValue
-        #6
-        goAgain = input('To play again, press ENTER! If you would rather quit, just enter "Q":\n').upper()
-        if goAgain == 'Q':
-            break
+        # Set the new card to be current card
+        currentCardRank = nextCardRank
+        currentCardValue = nextCardValue
+    #6
+    goAgain = input('To play again, press ENTER! If you would rather quit, just enter "Q":\n').upper()
+    if goAgain == 'Q':
+        break
 
-    print('Beep boop, Thanks for playing. Goodbye!')
-
-if __name__ == '__main__':
-    main()
+print('Beep boop, Thanks for playing. Goodbye!')
