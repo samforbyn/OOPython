@@ -1,9 +1,6 @@
 # Non-OOP
-# Bank 2
-# Single account
-
-from xxlimited import new
-
+# Bank Version 2
+# Single account with functions
 
 accountName = ''
 accountBalance = 0
@@ -75,4 +72,43 @@ while True:
 
     if action == 'b':
         print('Get Balance:')
-        userPassword
+        userPassword = input('Please enter your password:\n')
+        theBalance = getBalance(userPassword)
+
+        if theBalance is not None:
+            print(f'Your balance is: {theBalance}')
+
+    elif action == 'd':
+        print('Deposit:')
+        userDepositAmount =int(input('Please enter amount to deposit:\n'))
+        userPassword = input('Please enter your password:\n')
+
+        newBalance = deposit(userDepositAmount, userPassword)
+        if newBalance is not None:
+            print(f'Your new balance is: {newBalance}')
+
+# --- snip calls to appropriate functions ---
+
+    elif action == 's': # show acc info
+        show()
+
+    elif action == "q":
+        print("*** Thank you, Goodbye! ***")
+        break
+
+    elif action == 'w':
+        print("Withdraw:")
+        userWithdrawAmount= int(input("Please enter the amount to withdraw:\n"))
+        userPassword = input("Please enter your password:\n")
+
+        if userWithdrawAmount < 0:
+            print("You cannot withdraw a negative amount!")
+        elif userPassword != accountPassword:
+            print('Incorrect password')
+        elif userWithdrawAmount > accountBalance:
+            print("You cannot withdraw more than what you have in your account")
+        else: # OK
+            accountBalance -= userWithdrawAmount
+            print(f'Your new balance is: {accountBalance}')
+
+print("Done")

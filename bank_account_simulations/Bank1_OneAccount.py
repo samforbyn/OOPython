@@ -2,8 +2,6 @@
 # Bank Version 1
 # Single account without functions
 
-from ssl import ALERT_DESCRIPTION_BAD_RECORD_MAC
-
 
 accountName='Joe'
 accountBalance = 100
