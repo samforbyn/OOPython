@@ -41,3 +41,19 @@ def show():
                     Balance: {account1Balance}
                     Password: {account1Password}
         """)
+
+def getBalance(accountNumber, password):
+    if accountNumber == 0:
+        if password != account0Password:
+            print("Incorrect password")
+            return None
+        return account0Balance
+    if accountNumber == 1:
+        if password != account1Password:
+            print("Incorrect password")
+            return None
+    return account1Balance
+
+# --- snipped additional deposit() and withdraw() functions ---
+
+# --- snipped main code that calls functions above ---
