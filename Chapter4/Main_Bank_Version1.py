@@ -23,3 +23,20 @@ oMarysAccount.deposit(100, 'MarysPassword')
 # Show the accounts
 oJoesAccount.show()
 oMarysAccount.show()
+
+# Create another account with information from the user 
+userName = input("What is the name for the new user account?\n")
+userBalance = int(input("What is the starting balance for this account?\n"))
+userPassword = input("what is the password you want to use for this account?\n")
+oNewAccount = Account(userName, userBalance, userPassword)
+
+# Show the newly created user account
+oNewAccount.show()
+
+# Let's deposit 100 into the new account
+oNewAccount.deposit(100, userPassword)
+usersBalance = oNewAccount.getBalance(userPassword)
+print(f"After depositing 100, the user's balance is: {usersBalance}")
+
+# Show the new account
+oNewAccount.show()
