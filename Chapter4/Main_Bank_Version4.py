@@ -43,3 +43,49 @@ while True:
         theBalance = oAccount.getBalance(userAccountPassword)
         if theBalance is not None: 
             print(f"Your balance is: {theBalance}")
+    
+    elif action == "d":
+        print("*** Deposit ***")
+        userAccountNumber = int(input("Please enter the account number:\n"))
+        userDepositAmount = int(input("Please enter the amount to deposit:\n"))
+        userPassword = input("Please enter the password:\n")
+        oAccount = accountsDict[userAccountNumber]
+        theBalance = oAccount.deposit(userDepositAmount, userPassword)
+        if theBalance is not None:
+            print(f"Your new balance is: {theBalance}")
+
+    elif action == "o":
+        print("*** Open Account ***")
+        userName = input("What is the name for the new user account?\n")
+        userStartingAmount = int(input("What is the starting balance for this account?\n"))
+        userPassword = input("Please enter the password:\n")
+        oAccount = Account(userName, userStartingAmount, userPassword)
+        accountsDict[nextAccountNumber] = oAccount
+        print(f"Your new account number is: {nextAccountNumber}")
+        nextAccountNumber += 1
+
+    elif action == "s":
+        print("*** Show ***")
+        for userAccountNumber in accountsDict:
+            oAccount = accountsDict[userAccountNumber]
+            print(f"Account number: {userAccountNumber}")
+            oAccount.show()
+
+    elif action == "q":
+        break
+
+    elif action == "w":
+        print("*** Withdraw ***")
+        userAccountNumber = int(input("Please enter your account number:\n"))
+        userWithdrawlAmount = int(input("Please enter the amount to withdraw:\n"))
+        userPassword = input("Please enter the password:\n")
+        oAccount = accountsDict[userAccountNumber]
+        theBalance = oAccount.withdraw(userWithdrawlAmount, userPassword)
+        if theBalance is not None:
+            print(f"Withdrew: {userWithdrawlAmount}")
+            print(f"Your new balance is: {theBalance}")
+    
+    else:
+        print("Sorry, that action was not a valid action. Please try again.")
+
+print("Done!")
